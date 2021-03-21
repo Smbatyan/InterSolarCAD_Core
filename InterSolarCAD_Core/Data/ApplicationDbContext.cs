@@ -12,7 +12,7 @@ namespace InterSolarCAD_Core.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-        }
+        } 
         public DbSet<InterSolarCAD_Core.Models.Admin.Entity.PageContents> PageContents { get; set; }
         public DbSet<InterSolarCAD_Core.Models.Admin.Entity.Job> Job { get; set; }
         public DbSet<InterSolarCAD_Core.Models.Admin.Entity.ContactUs> ContactUs { get; set; }
