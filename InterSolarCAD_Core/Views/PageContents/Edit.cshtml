@@ -1,0 +1,102 @@
+﻿@model InterSolarCAD_Core.Models.Admin.Entity.PageContents
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3>Edit Content</h3>
+            </div>
+            <div class="panel-body">
+                <form asp-action="Edit" enctype="multipart/form-data" onsubmit="getDesc()">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Title" class="control-label"></label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ShortDesc" class="control-label"></label>
+                            <textarea asp-for="ShortDesc" class="form-control" rows="5" style="resize: vertical;"></textarea>
+                            <span asp-validation-for="ShortDesc" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="display:none">
+                            <label asp-for="LongDesc" class="control-label"></label>
+                            <input asp-for="LongDesc" class="form-control" />
+                            <span asp-validation-for="LongDesc" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="border-color: cornflowerblue; border-style: groove; border-width: 1px;">
+                            <div class="ibox float-e-margins" style="text-align: left;">
+                                <div class="ibox-title">
+                                    <h5>Description</h5>
+                                </div>
+                                <div class="ibox-content no-padding">
+                                    <div class="summernote click2edit wrapper p-md">
+                                        @Html.Raw(Model.LongDesc)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FooterText" class="control-label"></label>
+                            <input asp-for="FooterText" class="form-control" />
+                            <span asp-validation-for="FooterText" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Facebook" class="control-label"></label>
+                            <input asp-for="Facebook" class="form-control" />
+                            <span asp-validation-for="Facebook" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Linkedin" class="control-label"></label>
+                            <input asp-for="Linkedin" class="form-control" />
+                            <span asp-validation-for="Linkedin" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SliderVideoURL" class="control-label"></label>
+                            <input asp-for="File" type="file" class="form-control" />
+                            <span asp-validation-for="File" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OurTeamImage" class="control-label"></label>
+                            <input asp-for="OurTeamImageFile" type="file" class="form-control" />
+                            <span asp-validation-for="OurTeamImageFile" class="text-danger"></span>
+                        </div>
+                        <input type="submit" value="Save" class="btn btn-w-m btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-w-m btn-default btn-outline"> &lt; Back to list</a>
+</div>
+
+@section Styles {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link href="~/Admin/css/summernote/summernote-bs3.css" rel="stylesheet" />
+    <link href="~/Admin/css/summernote/summernote.css" rel="stylesheet" />
+
+}
+
+@section Scripts
+{
+    <script src="~/Admin/js/plugins/summernote/summernote.min.js"></script>
+    <script>
+        $(window).bind("load", function () {
+            $('.summernote').summernote();
+        });
+
+        function getDesc() {
+            var aHTML0 = $('.click2edit').code();
+            $('#LongDesc').val(aHTML0);
+            $('.click2edit').destroy();
+        }
+    </script>
+}

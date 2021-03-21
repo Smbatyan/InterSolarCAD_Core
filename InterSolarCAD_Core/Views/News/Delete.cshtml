@@ -1,0 +1,22 @@
+﻿@model InterSolarCAD_Core.Models.Admin.Entity.News
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="col-md-6 col-md-offset-3" style="border: ridge;">
+    <div style="background-color: #ed5666;font-size: 20px;color: white;">Are you sure you want to delete?</div>
+    <p style="margin: 25px">
+        <h1>@Html.DisplayFor(model => model.Title)</h1>
+    </p>
+    <p style="margin:25px">
+        <h4>@Html.DisplayFor(model => model.ShortDesc)</h4>
+    </p>
+    <div style="margin-top:50px">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <a asp-action="Index" class="btn btn-w-m btn-default">Back to List</a>
+            <input type="submit" value="Delete" class="btn btn-w-m btn-danger" />
+        </form>
+    </div>
+</div>

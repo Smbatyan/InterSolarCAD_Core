@@ -1,0 +1,174 @@
+﻿@{
+    bool finded = false;
+
+    string IsActive(string controller)
+    {
+
+        if (!finded)
+        {
+            if (Url.ActionContext.ActionDescriptor.RouteValues["controller"] == controller)
+            {
+                finded = true;
+                return "active";
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inter Solar CAD Admin Page</title>
+    <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.ico" />
+    <link href="~/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Admin/css/animate.css" rel="stylesheet">
+    @RenderSection("Styles", required: false)
+    <link href="~/Admin/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+
+        @*<nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav metismenu" id="side-menu">
+                        <li class="nav-header">
+                            <div class="dropdown profile-element">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="clear">
+                                        <span class="block m-t-xs">
+
+                                            <strong class="font-bold">Admin </strong>
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="active">
+                            <a href="~/AdminAboutUs"><i class="fa fa-bullhorn" data-toggle="tooltip" data-placement="top" title="About us"></i> <span class="nav-label">About us</span> </a>
+                            <a href="~/AdminServices"><i class="fa fa-asterisk" aria-hidden="true" data-toggle="tooltip" data-placement="Services" title="ContactUs"></i> <span class="nav-label">Services</span> </a>
+                            <a href="~/AdminTours"><i class="fa fa-paper-plane" aria-hidden="true" data-toggle="tooltip" data-placement="Messages" title="Messages"></i> <span class="nav-label">Tours</span> </a>
+                            <a href="~/AdminPartners"><i class="fa fa-users" aria-hidden="true" data-toggle="tooltip" data-placement="Messages" title="Messages"></i> <span class="nav-label">Partners</span> </a>
+                            <a href="~/AdminPageContents"><i class="fa fa-desktop" aria-hidden="true" data-toggle="tooltip" data-placement="PageContents" title="PageContents"></i> <span class="nav-label">Page contents</span> </a>
+                            <a href="~/SliderImages"><i class="fa fa-image" aria-hidden="true" data-toggle="tooltip" data-placement="SliderImages" title="Slider Images"></i> <span class="nav-label">Slider images</span> </a>
+                            <a href="~/AdminContactUs"><i class="fa fa-phone" aria-hidden="true" data-toggle="tooltip" data-placement="ContactUs" title="ContactUs"></i> <span class="nav-label">ContactUs</span> </a>
+                            <a href="~/AdminTestimonials"><i class="fa fa-comment" aria-hidden="true" data-toggle="tooltip" data-placement="Testimonials" title="Testimonials"></i> <span class="nav-label">Testimonials</span> </a>
+                            <a href="~/AdminContactForms"><i class="fa fa-envelope" aria-hidden="true" data-toggle="tooltip" data-placement="Messages" title="Messages"></i> <span class="nav-label">Messages</span> </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>*@
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header" style="background: bottom;">
+                        <div class="dropdown profile-element">
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <img src="~/Images/logo_hor.png" style="max-width:150px" />
+                                </span>
+                            </span>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            ISC
+                        </div>
+                    </li>
+                    <li class="@IsActive("AboutUs")">
+                        <a href="~/AboutUs"><i class="fa fa-bullhorn"></i> <span class="nav-label">About</span></a>
+                    </li>
+                    <li class="@IsActive("ContactUs")">
+                        <a href="~/ContactUs"><i class="fa fa-phone"></i> <span class="nav-label">Contacts</span> </a>
+                    </li>
+                    <li class="@IsActive("PageContents")">
+                        <a href="~/PageContents"><i class="fa fa-desktop"></i> <span class="nav-label">Page contents</span> </a>
+                    </li>
+                    <li class="@IsActive("Jobs")">
+                        <a href="~/Jobs"><i class="fa fa-legal"></i> <span class="nav-label">Vacancies</span> </a>
+                    </li>
+                    <li class="@IsActive("ContactForms")">
+                        <a href="~/ContactForms"><i class="fa fa-send"></i> <span class="nav-label">User's messages</span> </a>
+                    </li>
+                    <li class="@IsActive("Projects")">
+                        <a href="~/Projects/List"><i class="fa fa-cubes"></i> <span class="nav-label">Projects</span> </a>
+                    </li>
+                    <li class="@IsActive("MapStates")">
+                        <a href="~/MapStates"><i class="fa fa-map-marker"></i> <span class="nav-label">States</span> </a>
+                    </li>
+                    <li class="@IsActive("WorkProcesses")">
+                        <a href="~/WorkProcesses"><i class="fa fa-angle-double-right"></i> <span class="nav-label">Work Processes</span> </a>
+                    </li>
+                    <li class="@IsActive("Testimonials")">
+                        <a href="~/Testimonials"><i class="fa fa-quote-right"></i> <span class="nav-label">Feedback</span> </a>
+                    </li>
+                    <li class="@IsActive("Clients")">
+                        <a href="~/Clients"><i class="fa fa-smile-o"></i> <span class="nav-label">Clients</span> </a>
+                    </li>
+                    <li class="@IsActive("News")">
+                        <a href="~/News/List"><i class="fa fa-newspaper-o"></i> <span class="nav-label">News</span> </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <partial name="~/Views/Shared/_LoginPartial.cshtml" />
+                    </ul>
+
+                    @*<div class="form-group form-group col-md-offset-5">
+                        <h2>Inter Solar CAD Admin Page</h2>
+                    </div>*@
+
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center m-t-lg">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Admin/js/jquery-2.1.1.js"></script>
+    <script src="~/Admin/js/bootstrap.min.js"></script>
+    <script src="~/Admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+    <script src="~/Admin/js/inspinia.js"></script>
+    <script src="~/Admin/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

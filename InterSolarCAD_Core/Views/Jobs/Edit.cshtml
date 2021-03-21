@@ -1,0 +1,74 @@
+﻿@model InterSolarCAD_Core.Models.Admin.Entity.Job
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3>Edit</h3>
+            </div>
+            <div class="panel-body">
+                <form asp-action="Edit" enctype="multipart/form-data" onsubmit="getDesc()">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Possition" class="control-label"></label>
+                        <input asp-for="Possition" class="form-control" />
+                        <span asp-validation-for="Possition" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="Desc" class="control-label"></label>
+                        <input asp-for="Desc" class="form-control" />
+                        <span asp-validation-for="Desc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="border-color: cornflowerblue; border-style: groove; border-width: 1px;">
+                        <div class="ibox float-e-margins" style="text-align: left;">
+                            <div class="ibox-title">
+                                <h5>Description</h5>
+                            </div>
+                            <div class="ibox-content no-padding">
+                                <div class="summernote click2edit wrapper p-md">
+                                    @Html.Raw(Model.Desc)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-w-m btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-w-m btn-default btn-outline"> &lt; Back to list</a>
+</div>
+
+
+@section Styles {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link href="~/Admin/css/summernote/summernote-bs3.css" rel="stylesheet" />
+    <link href="~/Admin/css/summernote/summernote.css" rel="stylesheet" />
+
+}
+
+@section Scripts
+{
+    <script src="~/Admin/js/plugins/summernote/summernote.min.js"></script>
+    <script>
+        $(window).bind("load", function () {
+            $('.summernote').summernote();
+        });
+
+        function getDesc() {
+            var aHTML0 = $('.click2edit').code();
+            $('#Desc').val(aHTML0);
+            $('.click2edit').destroy();
+        }
+    </script>
+}

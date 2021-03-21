@@ -1,0 +1,171 @@
+﻿@model InterSolarCAD_Core.Models.Web.OurProjectsVM
+
+@{
+    Layout = null;
+
+    int count = 0;
+
+    InterSolarCAD_Core.Models.Admin.Entity.News newsItem = Model.NewsItem;
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>INTER SOLAR CAD</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/new/css/styles.min.css">
+</head>
+
+<body>
+    <header class="inner" id="Home">
+        <nav class="navbar d-flex align-items-center">
+            <div class="container d-flex justify-content-center align-items-center justify-content-lg-between">
+                <div class="menu-burger d-lg-none">
+                    <img src="~/assets/new/img/hamburger.svg" alt="">
+                </div>
+                <a class="navbar-brand" href="/"><img src="~/assets/new/img/logo-desktop.png" alt=""></a>
+                <div class="d-none d-lg-block">
+                    <ul class="navbar-nav d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#Home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#AboutUs">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#Projects">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#News">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#OurTeam">Our Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#Vacancy">Vacancy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#ContactUs">Contact Us</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="overlay"></div>
+        <div class="navbar-container">
+            <a class="navbar-brand" href="/"><img src="~/assets/new/img/logo-desktop.png" alt=""></a>
+            <div class="close-menu"><img src="~/assets/new/img/close.svg" alt=""></div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/#Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#AboutUs">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#Projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#News">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#OurTeam">Our Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#Vacancy">Vacancy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#ContactUs">Contact Us</a>
+                </li>
+            </ul>
+            <div class="social-links">
+                @if (!string.IsNullOrEmpty(Model.PageContents.Facebook))
+                {
+                    <a href="@Model.PageContents.Facebook"><i class="fab fa-facebook-f"></i></a>
+                }
+                @if (!string.IsNullOrEmpty(Model.PageContents.Linkedin))
+                {
+                    <a href="@Model.PageContents.Linkedin"><i class="fab fa-linkedin-in"></i></a>
+                }
+            </div>
+        </div>
+        <div class="home-cover">
+            <div class="with-overlay"><img src="assets/img/news-background.jpg" alt=""></div>
+            <div class="cover-title-wrapper">
+                <div class="container d-flex align-items-center justify-content-center">
+                    <article class="cover-title col-10 col-lg-8">
+                        <h2 class="mb-3">@Model.NewsItem.Title</h2>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="container news" id="Projects">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
+                    <div class="work-container">
+                       @Html.Raw(Model.NewsItem.LongDesc)
+                        <div class="mb-3"><span>01.01.21</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-4 col-lg-4 col-xl-6 d-none d-md-block">
+                    <a href="/"><img src="~/assets/new/img/logo-desktop.png" alt="logo"></a>
+                </div>
+                <div class="col-md-8 col-lg-8 col-xl-6">
+                    <nav class="mb-4">
+                        <ul class="d-flex flex-column align-items-center flex-sm-row justify-content-between justify-content-md-start">
+                            <li class="mb-2 mb-sm-0"><a href="/#Home">Home</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#AboutUs">About Us</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#Projects">Projects</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#News">News</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#OurTeam">Our Team</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#Vacancy">Vacancy</a></li>
+                            <li><a href="/#ContactUs">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div class="d-md-none">
+                            <a href="/"><img src="~/assets/new/img/logo-desktop.png" alt="logo"></a>
+                        </div>
+                        <div class="d-flex flex-column align-items-end flex-md-row align-items-md-end justify-content-md-between w-100">
+                            <div class="order-1 order-md-0">© InterSolar CAD © 2019</div>
+                            <div class="social-links mb-3 order-0 order-md-1 mb-md-0">
+                                @if (!string.IsNullOrEmpty(Model.PageContents.Facebook))
+                                {
+                                    <a href="@Model.PageContents.Facebook"><i class="fa fa-facebook-f"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.PageContents.Linkedin))
+                                {
+                                    <a href="@Model.PageContents.Linkedin"><i class="fa fa-linkedin-in"></i></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="~/assets/new/js/jquery-1.12.3.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+    <script src="~/assets/new/js/app.min.js"></script>
+
+</body>
+
+</html>

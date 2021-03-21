@@ -1,0 +1,79 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inter Solar CAD Admin Page</title>
+    <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.ico" />
+    <link href="~/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Admin/css/animate.css" rel="stylesheet">
+    @*@RenderSection("Styles", required: false)*@
+    <link href="~/Admin/css/style.css" rel="stylesheet">
+</head>
+
+<body class="pace-done" style="background-color:white">
+
+    <div id="wrapper" style="width:100%">
+        <div class="middle-box text-center loginscreen animated fadeInDown">
+            <div>
+                <div>
+                    <img src="~/Images/logo_hor.png"/>
+                </div>
+                <h3>Welcome to <br /> InterSolar CAD Admin page</h3>
+
+                <p>Login in. To see it in action.</p>
+                <section>
+                    <form id="account" method="post">
+                        <h4>Use a local account to log in.</h4>
+                        <hr />
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" class="form-control" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMe">
+                                    <input asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success">Log in</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Admin/js/jquery-2.1.1.js"></script>
+    <script src="~/Admin/js/bootstrap.min.js"></script>
+    @*@RenderSection("Scripts", required: false)*@
+
+</body>
+
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

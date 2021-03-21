@@ -1,0 +1,17 @@
+﻿@model InterSolarCAD_Core.Models.Admin.Entity.Testimonials
+
+@{
+    Layout = null;
+}
+
+<h2>Are you sure you want to delete?</h2>
+<p>
+    <h1>@Html.DisplayFor(model => model.Company)</h1>
+</p>
+<div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <a asp-action="Index" class="btn btn-w-m btn-default">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-w-m btn-danger" />
+    </form>
+</div>

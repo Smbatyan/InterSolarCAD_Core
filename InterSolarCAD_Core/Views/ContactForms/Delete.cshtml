@@ -1,0 +1,22 @@
+﻿@model InterSolarCAD_Core.Models.Admin.Entity.ContactForm
+
+@{
+    ViewData["Title"] = "Delete";
+}
+@*style="border: ridge; border-color: #ed5666"*@
+<div class="col-md-6 col-md-offset-3 border border-warning rounded" style="border: groove;border-radius: 6px;border-color: #ed5666;border-width: thin;">
+    <div style="font-size: 20px; margin:15px">Are you sure you want to delete?</div>
+    <p style="margin: 25px">
+        <h1>@Html.DisplayFor(model => model.FirstName) </h1> <h1 style="margin-left:10px">@Html.DisplayFor(model => model.LastName) </h1>
+    </p>
+    <p style="margin:25px">
+        <h4>@Html.DisplayFor(model => model.Message)</h4>
+    </p>
+    <div style="margin:30px">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <a asp-action="Index" class="btn btn-w-m btn-default">Back to List</a>
+            <input type="submit" value="Delete" class="btn btn-w-m btn-danger" />
+        </form>
+    </div>
+</div>
