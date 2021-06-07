@@ -9,6 +9,7 @@ using InterSolarCAD_Core.Data;
 using InterSolarCAD_Core.Models.Admin.Entity;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using InterSolarCAD_Core.Models.Web;
 
 namespace InterSolarCAD_Core.Controllers
 {
@@ -22,12 +23,16 @@ namespace InterSolarCAD_Core.Controllers
             _context = context;
         }
 
-        // GET: News
-        public async Task<IActionResult> Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index(int? pageNumber = 0)
         {
-            return View(await _context.News.ToListAsync());
+            NewsVM vm = new NewsVM(_context, pageNumber: pageNumber);
+
+            return View(vm);
         }
 
+        
+        [AllowAnonymous]
         // GET: News/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -36,15 +41,26 @@ namespace InterSolarCAD_Core.Controllers
                 return NotFound();
             }
 
-            var news = await _context.News
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (news == null)
+            NewsVM vm = default;
+
+            try
+            {
+                vm = new NewsVM(_context, id);
+            }
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            return View(news);
+            
+            return View(vm);
         }
+
+        // GET: News
+        public async Task<IActionResult> List()
+        {
+            return View(await _context.News.ToListAsync());
+        }
+
 
         // GET: News/Create
         public IActionResult Create()
@@ -63,7 +79,7 @@ namespace InterSolarCAD_Core.Controllers
             {
                 _context.Add(news);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             }
             return View(news);
         }
@@ -100,7 +116,9 @@ namespace InterSolarCAD_Core.Controllers
             {
                 try
                 {
-                    string img = _context.Project.AsNoTracking().First().Image;
+                    string img = _context.News.Where(x => x.Id == news.Id).AsNoTracking().FirstOrDefault()?.MainImage;
+                    var filePath = Path.Combine(Directory.GetParent("wwwroot").FullName, @"wwwroot", img);
+
                     if (news.MainImage != null)
                     {
                         if (img != null && System.IO.File.Exists(img))
@@ -127,7 +145,7 @@ namespace InterSolarCAD_Core.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             }
             return View(news);
         }
@@ -163,7 +181,7 @@ namespace InterSolarCAD_Core.Controllers
 
             _context.News.Remove(news);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(List));
         }
 
         private bool NewsExists(int id)

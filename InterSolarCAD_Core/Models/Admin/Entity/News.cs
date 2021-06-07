@@ -17,6 +17,8 @@ namespace InterSolarCAD_Core.Models.Admin.Entity
 
         public bool MainPage { get; set; }
 
+        //public DateTime CreateDate { get; set; }
+
         [NotMapped]
         public IFormFile File
         {

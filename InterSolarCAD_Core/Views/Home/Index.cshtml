@@ -54,10 +54,95 @@
             outline: none;
         }
     </style>
+    @if (Convert.ToBoolean(ViewBag.msg))
+    {
+        <style type="text/css">
+            #overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+                filter: alpha(opacity=70);
+                -moz-opacity: 0.7;
+                -khtml-opacity: 0.7;
+                opacity: 0.7;
+                z-index: 100;
+                display: none;
+            }
+
+            .cnt223 a {
+                text-decoration: none;
+            }
+
+            .popup {
+                width: 100%;
+                margin: 0 auto;
+                display: none;
+                position: fixed;
+                z-index: 101;
+            }
+
+            .cnt223 {
+                min-width: 600px;
+                width: 600px;
+                min-height: 200px;
+                margin: 100px auto;
+                background: #f3f3f3;
+                position: relative;
+                z-index: 103;
+                padding: 15px 35px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px #000;
+            }
+
+                .cnt223 p {
+                    clear: both;
+                    color: #555555;
+                    /* text-align: justify; */
+                    font-size: 20px;
+                    font-family: sans-serif;
+                }
+
+                    .cnt223 p a {
+                        color: #d91900;
+                        font-weight: bold;
+                    }
+
+                .cnt223 .x {
+                    float: right;
+                    height: 35px;
+                    left: 22px;
+                    position: relative;
+                    top: -25px;
+                    width: 34px;
+                }
+
+                    .cnt223 .x:hover {
+                        cursor: pointer;
+                    }
+        </style>
+    }
 </head>
 
 <body>
-    <header id="nav-1">
+    <header id="Home">
+        @if (Convert.ToBoolean(ViewBag.msg))
+        {
+            <div class='popup'>
+                <div class='cnt223'>
+                    <h1>Thank you</h1>
+                    <p>
+                        Your message has been delivered.
+                        <br />
+                        Our team will contact you shortly.
+                        <br />
+                        <input type="button" class="close primary-button button-little orange-to-blue" style="float:right" value="Close" />
+                    </p>
+                </div>
+            </div>
+        }
         <nav class="navbar d-flex align-items-center">
             <div class="container d-flex justify-content-center align-items-center justify-content-lg-between">
                 <div class="menu-burger d-lg-none">
@@ -67,22 +152,25 @@
                 <div class="d-none d-lg-block">
                     <ul class="navbar-nav d-flex">
                         <li class="nav-item">
-                            <a class="nav-link" data-for-section="#nav-1">Home</a>
+                            <a class="nav-link" href="/#Home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-for-section="#nav-2">About us</a>
+                            <a class="nav-link" href="/#AboutUs">About us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-for-section="#nav-3">Projects</a>
+                            <a class="nav-link" href="/#Projects">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-for-section="#nav-4">Out Team</a>
+                            <a class="nav-link" href="/#News">News</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-for-section="#nav-5">Vacancy</a>
+                            <a class="nav-link" href="/#OurTeam">Our Team</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-for-section="#nav-6">Contact Us</a>
+                            <a class="nav-link" href="/#Vacancy">Vacancy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#ContactUs">Contact Us</a>
                         </li>
 
                     </ul>
@@ -95,22 +183,25 @@
             <div class="close-menu"><img src="../assets/img/close.svg" alt=""></div>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-for-section="#nav-1">Home</a>
+                    <a class="nav-link" href="/#Home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-for-section="#nav-2">About us</a>
+                    <a class="nav-link" href="/#AboutUs">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-for-section="#nav-3">Projects</a>
+                    <a class="nav-link" href="/#Projects">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-for-section="#nav-4">Out Team</a>
+                    <a class="nav-link" href="/#News">News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-for-section="#nav-5">Vacancy</a>
+                    <a class="nav-link" href="/#OurTeam">Our Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-for-section="#nav-6">Contact Us</a>
+                    <a class="nav-link" href="/#Vacancy">Vacancy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#ContactUs">Contact Us</a>
                 </li>
             </ul>
             <div class="social-links">
@@ -146,9 +237,9 @@
                     <article class="cover-title col-10 col-lg-8">
                         @Html.Raw(Model.PageContents.LongDesc)
                         @*<h2 class="mb-3"></h2>
-                            <p class="mb-md-3">
+                        <p class="mb-md-3">
 
-                            </p>*@
+                        </p>*@
                         <a data-for-section="#nav-2" class="primary-button green-to-blue button-big">More About Us</a>
                     </article>
                 </div>
@@ -168,8 +259,9 @@
             </div>
         </div>
     </header>
-    <main>
-        <section class="container about about-bef" id="nav-2">
+    <main class="inner">
+       
+        <section class="container about about-bef" id="AboutUs">
             <h2 class="mb-2 text-center">About us</h2>
             <div class="row no-gutters">
                 <div class="col-12 col-md-5">
@@ -219,7 +311,7 @@
                         <div class="work-container">
                             <img class="d-block mb-3" src="../@p.Image">
                             @*<a asp-controller="Projects" asp-action="Details" asp-route-id="@p.Id">*@
-                                <h3>@p.Title</h3>
+                            <h3>@p.Title</h3>
                             @*</a>*@
                             <p>@p.ShortDesc</p>
                         </div>
@@ -227,7 +319,7 @@
                 }
             </div>
             <div class="d-flex justify-content-center">
-                <a href="~/OurProjects" class="button-big primary-button green-to-blue mt-5">See All</a>
+                <a href="~/Projects" class="button-big primary-button green-to-blue mt-5">See All</a>
             </div>
         </section>
 
@@ -295,8 +387,8 @@
                     </div>
                 </div>
                 @*<div class="d-flex justify-content-center">
-                        <a href="~/Home/OurTeam" class="button-big primary-button green-to-blue mt-5">see all staff</a>
-                    </div>*@
+                    <a href="~/Home/OurTeam" class="button-big primary-button green-to-blue mt-5">see all staff</a>
+                </div>*@
             </section>
         }
         @if (Model.News != null && Model.News.Count > 0)
@@ -308,13 +400,13 @@
                     us via the contact page.
                 </p>
                 <div class="work-swiper-container swiper-container">
-                    <div class="swiper-wrapper justify-content-center">
+                    <div class="swiper-wrapper justify-content-center" style="margin: 2%;">
                         @foreach (var p in Model.News)
                         {
                             <div class="swiper-slide">
                                 <div class="work-container">
                                     <img class="d-block mb-3" src="../@p.MainImage" alt="">
-                                    <h3>@p.Title</h3>
+                                    <a href="News/Details/@p.Id"><h3>@p.Title</h3></a>
                                     <p>@p.ShortDesc</p>
                                 </div>
                             </div>
@@ -323,7 +415,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <a href="~/Home/News" class="button-big primary-button green-to-blue mt-5">see all</a>
+                    <a href="~/News" class="button-big primary-button green-to-blue mt-5">see all</a>
                 </div>
 
             </section>
@@ -431,8 +523,8 @@
                         <div class="d-flex mb-4">
                             <img src="/assets/img/pin.svg" alt="">
                             @*<a href="https://www.google.com/maps/place/333+S+Central+Ave+%23100,+Glendale,+CA+91204,+USA/@@34.1416495,-118.2582155,17z/data=!4m5!3m4!1s0x80c2c0feb1e34ccf:0x9a15c1d104825ebb!8m2!3d34.1418143!4d-118.2581898" target="_blank">
-                                    333 S Central ave, suite 100 Glendale, California
-                                </a>*@
+                                333 S Central ave, suite 100 Glendale, California
+                            </a>*@
                             @Model.ContactUs.Address
 
                         </div>
@@ -451,6 +543,7 @@
         </section>
     </main>
     <footer>
+        
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-4 col-lg-4 col-xl-6 d-none d-md-block">
@@ -459,12 +552,13 @@
                 <div class="col-md-8 col-lg-8 col-xl-6">
                     <nav class="mb-4">
                         <ul class="d-flex flex-column flex-md-row justify-content-between justify-content-md-start">
-                            <li><a data-for-section="#nav-1">Home</a></li>
-                            <li><a data-for-section="#nav-2">About Us</a></li>
-                            <li><a data-for-section="#nav-3">Projects</a></li>
-                            <li><a data-for-section="#nav-4">Out Team</a></li>
-                            <li><a data-for-section="#nav-5">Vacancy</a></li>
-                            <li><a data-for-section="#nav-6">Contact Us</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#Home">Home</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#AboutUs">About Us</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#Projects">Projects</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#News">News</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#OurTeam">Our Team</a></li>
+                            <li class="mb-2 mb-sm-0"><a href="/#Vacancy">Vacancy</a></li>
+                            <li><a href="/#ContactUs">Contact Us</a></li>
                         </ul>
                     </nav>
                     <div class="d-flex justify-content-between align-items-end">
@@ -526,6 +620,28 @@
             }, 5000);
         });
     </script>
+    @if (Convert.ToBoolean(ViewBag.msg))
+    {
+        <script type='text/javascript'>
+            $(function () {
+                var overlay = $('<div id="overlay"></div>');
+                overlay.show();
+                overlay.appendTo(document.body);
+                $('.popup').show();
+                $('.close').click(function () {
+                    $('.popup').hide();
+                    overlay.appendTo(document.body).remove();
+                    return false;
+                });
+
+                $('.x').click(function () {
+                    $('.popup').hide();
+                    overlay.appendTo(document.body).remove();
+                    return false;
+                });
+            });
+        </script>
+    }
 </body>
 
 </html>

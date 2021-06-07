@@ -25,8 +25,9 @@ namespace InterSolarCAD_Core.Controllers
             _db = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(bool msg)
         {
+            ViewBag.msg = msg;
             ViewModel vm = new ViewModel(_db);
             
             return View(vm);
@@ -75,7 +76,7 @@ namespace InterSolarCAD_Core.Controllers
                         contact.Date = DateTime.Now;
                         _db.ContactForm.Add(contact);
                         _db.SaveChanges();
-                        return RedirectToAction("Index#Contacts");
+                        return RedirectToAction("Index", new { msg = true });
                     }
                     else
                     {

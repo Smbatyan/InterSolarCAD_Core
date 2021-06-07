@@ -10,6 +10,7 @@ using InterSolarCAD_Core.Models.Admin.Entity;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using InterSolarCAD_Core.Models.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace InterSolarCAD_Core.Controllers
 {
@@ -24,9 +25,9 @@ namespace InterSolarCAD_Core.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Index()
+        public IActionResult Index(int pageNumber = 0)
         {
-            OurProjectsVM vm = new OurProjectsVM(_context);
+            OurProjectsVM vm = new OurProjectsVM(_context, pageNumber: pageNumber);
 
             return View(vm);
         }
@@ -37,8 +38,9 @@ namespace InterSolarCAD_Core.Controllers
             return View(await _context.Project.ToListAsync());
         }
 
+        [AllowAnonymous]
         // GET: Projects/Details/5
-        public async Task<IActionResult> ItemDetails(int? id)
+        public async Task<IActionResult> Details(uint? id)
         {
             if (id == null)
             {
@@ -72,7 +74,7 @@ namespace InterSolarCAD_Core.Controllers
             {
                 _context.Add(project);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             }
             return View(project);
         }
@@ -109,7 +111,9 @@ namespace InterSolarCAD_Core.Controllers
             {
                 try
                 {
-                    string img = _context.Project.AsNoTracking().First().Image;
+                    string img = _context.Project.Where(x => x.Id == project.Id).AsNoTracking().FirstOrDefault()?.Image;
+                    var filePath = Path.Combine(Directory.GetParent("wwwroot").FullName, @"wwwroot", img);
+
                     if (project.Image != null)
                     {
                         if (img != null && System.IO.File.Exists(img))
@@ -136,7 +140,7 @@ namespace InterSolarCAD_Core.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             }
             return View(project);
         }
@@ -173,7 +177,7 @@ namespace InterSolarCAD_Core.Controllers
 
             _context.Project.Remove(project);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(List));
         }
 
         private bool ProjectExists(int id)

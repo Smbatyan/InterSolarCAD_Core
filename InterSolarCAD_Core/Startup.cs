@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using InterSolarCAD_Core.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Logging;
 
@@ -44,7 +36,7 @@ namespace InterSolarCAD_Core
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            //if (!env.IsDevelopment())
+            //if (!en.IsDevelopment())
             //{
             //    app.UseDeveloperExceptionPage();
             //    app.UseDatabaseErrorPage();
@@ -57,14 +49,11 @@ namespace InterSolarCAD_Core
             //}
 
             app.UseDeveloperExceptionPage();
-            app.UseDatabaseErrorPage();
 
-            //var path = Directory.GetCurrentDirectory();
-            //loggerFactory.AddFile($"{path}\\wwwroot\\Logs\\Log.txt");
-            
             //app.UseMiddleware<LoggingMiddleware>();
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
