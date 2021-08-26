@@ -41,7 +41,7 @@ namespace InterSolarCAD_Core.Models.Web
 
             ContactUs = db.ContactUs.FirstOrDefault();
 
-            PageContents = db.PageContents.First();
+            PageContents = db.PageContents.FirstOrDefault();
 
             TeamMembers = db.TeamMember.ToList();
 

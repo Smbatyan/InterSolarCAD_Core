@@ -17,7 +17,7 @@ namespace InterSolarCAD_Core.Models.Admin.Entity
         [DisplayName("Short description")]
         public string ShortDesc { get; set; }
 
-        [StringLength(5000)]
+        [StringLength(500000)]
         [DisplayName("Long description")]
         public string LongDesc { get; set; }
     }

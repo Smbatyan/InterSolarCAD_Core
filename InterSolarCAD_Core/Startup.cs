@@ -50,7 +50,7 @@ namespace InterSolarCAD_Core
 
             app.UseDeveloperExceptionPage();
 
-            //app.UseMiddleware<LoggingMiddleware>();
+            app.UseMiddleware<LoggingMiddleware>();
 
             app.UseHttpsRedirection();
 

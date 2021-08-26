@@ -1,5 +1,5 @@
 ﻿@model InterSolarCAD_Core.Models.Web.NewsVM
-@{ 
+@{
 
     Layout = null;
 }
@@ -13,7 +13,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
 
-    <title>INTER SOLAR CAD</title>
+    <title>@Model.NewsItem.Title</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/assets/new/css/styles.min.css">
 </head>
@@ -23,9 +23,9 @@
         <nav class="navbar d-flex align-items-center">
             <div class="container d-flex justify-content-center align-items-center justify-content-lg-between">
                 <div class="menu-burger d-lg-none">
-                    <img src="assets/img/hamburger.svg" alt="">
+                    <img src="~/assets/new/img/hamburger.svg" alt="">
                 </div>
-                <a class="navbar-brand" href="/"><img src="assets/img/logo-desktop.png" alt=""></a>
+                <a class="navbar-brand" href="/"><img src="~/assets/new/img/logo-desktop.png" alt=""></a>
                 <div class="d-none d-lg-block">
                     <ul class="navbar-nav d-flex">
                         <li class="nav-item">
@@ -56,7 +56,7 @@
         </nav>
         <div class="overlay"></div>
         <div class="navbar-container ">
-            <a class="navbar-brand" href="/"><img src="~/assets/img/logo-desktop.png" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="~/assets/new/img/logo-desktop.png" alt=""></a>
             <div class="close-menu"><img src="~/assets/new/img/close.svg" alt=""></div>
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -87,13 +87,13 @@
             </div>
         </div>
         <div class="home-cover">
-            <div class="with-overlay"><img src="~/assets/new/img/news-background.jpg" alt=""></div>
-            @*<div class="with-overlay"><img src="@Model.NewsItem.MainImage" alt=""></div>*@
+            @*<div class="with-overlay"><img src="~/assets/new/img/news-background.jpg" alt=""></div>*@
+            <div class="with-overlay"><img src="@Model.NewsItem.MainImage" alt=""></div>
             <div class="cover-title-wrapper">
                 <div class="container d-flex align-items-center justify-content-center">
-                  
+
                     <article class="cover-title col-10 col-lg-8">
-                        <h2 class="mb-3">NV Energy issues RFP for 350-kW community solar project at Las Vegas high school</h2>
+                        <h2 class="mb-3">@Model.NewsItem.ShortDesc</h2>
                     </article>
                 </div>
             </div>
@@ -101,18 +101,12 @@
     </header>
     <main>
         <section class="container news">
-          @*  <div class="row justify-content-center">*@
-            <div class="container">
-                <div class="row">
-                    <img style="max-height:300px; float:left" src="@Model.NewsItem.MainImage" />
-                    @Html.Raw(Model.NewsItem.LongDesc)
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
+                    <div class="work-container">
+                       @Html.Raw(Model.NewsItem.LongDesc)
+                    </div>
                 </div>
-                <!--<div class="col-12 col-md-8">
-        <div class="work-container">-->
-                @*<div class="mb-3"><span>@Model.NewsItem.CreateDate</span></div>*@
-                <!--</div>
-    </div>-->
-                @*</div>*@
             </div>
         </section>
     </main>
@@ -120,7 +114,7 @@
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-4 col-lg-4 d-none d-md-block">
-                    <a href="/"><img src="assets/img/logo-desktop.png" alt="logo"></a>
+                    <a href="/"><img src="~/assets/img/logo-desktop.png" alt="logo"></a>
                 </div>
                 <div class="col-md-8 col-lg-8">
                     <nav class="mb-4">
